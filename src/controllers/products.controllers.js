@@ -2,7 +2,7 @@ import {conn} from '../db/db.js'
 import { productSchema } from '../models/product.model.js';
 
 export const getProducts = async (req, res) => {
-    const [rows] = await conn.query('CALL PA_GET_PRODUCT')
+    const [rows] = await conn.query('SELECT * FROM productos')
     res.send(rows);
 }
 
