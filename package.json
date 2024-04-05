@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "node src/index.js 3001",
+    "prod": "node src/index.js 4000"
   },
   "keywords": [],
   "author": "",

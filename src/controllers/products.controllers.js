@@ -1,11 +1,10 @@
-import {conn} from '../db/db.js'
+import {conn, pool} from '../db/db.js'
 import { productSchema } from '../models/product.model.js';
 
 export const getProducts = async (req, res) => {
     const [rows] = await conn.query('SELECT * FROM productos')
     res.send(rows);
 }
-
 export const getProductById = async (req, res) => {
     const [row] = await conn.query('SELECT * FROM productos WHERE productoid = ?', [req.params.id])
     res.send(row)

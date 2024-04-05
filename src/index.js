@@ -1,18 +1,30 @@
-import express from 'express'
+// Import necessary modules
+import express from 'express';
 import cors from 'cors';
-import productsRoutes from './routes/products.routes.js'
+import productsRoutes from './routes/products.routes.js';
+import dotenv from "dotenv";
 
-const app = express()
+// Load environment variables early
+dotenv.config();
 
-// Enable CORS for all origins during development (not recommended for production)
-app.use(cors()); 
+const app = express();
+
+
+app.use(cors());
 
 app.use(express.json());
 
-app.listen(3001)
+const port = parseInt(process.argv[2]);
 
-console.log("Server running on PORT 3001");
+if (!port) {
+  console.error('Error: Missing port argument');
+  process.exit(1); 
+}
 
-app.get('/ping', (req, res) => res.send('pong'))
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 
-app.use(productsRoutes)
+app.get('/ping', (req, res) => res.send('pong'));
+
+app.use(productsRoutes);
